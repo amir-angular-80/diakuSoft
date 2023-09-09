@@ -1,0 +1,48 @@
+.logo {
+  height: 40px;
+  margin: 16px;
+  background: url(../assets/mainlogo.png);
+}
+.layout {
+  min-height: 100%;
+}
+nz-header {
+  background: #fff;
+  padding: 0;
+  position: fixed;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  z-index: 1000;
+}
+
+nz-content {
+  margin: 24px 16px 0;
+  margin-top: 90px !important;
+  margin-bottom: 90px !important;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  height: auto;
+}
+
+nz-footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.ant-layout {
+  display: flex;
+  flex: auto;
+  min-height: 100%;
+  background: #f0f2f5;
+}
+.avatar {
+  position: fixed;
+  max-width: 100%;
+  min-height: 1px;
+  right: 0;
+  padding-right: 25px;
+}

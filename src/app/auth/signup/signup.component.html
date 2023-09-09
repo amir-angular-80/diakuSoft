@@ -1,0 +1,141 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <h1
+          class="my-5 display-5 fw-bold ls-tight"
+          style="color: hsl(218, 81%, 95%)"
+        >
+          Signup Form <br />
+          <span style="color: hsl(218, 81%, 75%)">Diaku Soft Group</span>
+        </h1>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+        <div
+          id="radius-shape-1"
+          class="position-absolute rounded-circle shadow-5-strong"
+        ></div>
+        <div
+          id="radius-shape-2"
+          class="position-absolute shadow-5-strong"
+        ></div>
+
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form
+              nz-form
+              [formGroup]="validateForm"
+              class="login-form"
+              (ngSubmit)="submitForm()"
+            >
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your username!">
+                  <nz-input-group nzPrefixIcon="user">
+                    <input
+                      type="text"
+                      nz-input
+                      formControlName="userName"
+                      placeholder="Username"
+                    />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your Email!">
+                  <nz-input-group nzPrefixIcon="mail">
+                    <input
+                      type="email"
+                      nz-input
+                      formControlName="email"
+                      placeholder="email"
+                    />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your FirstName!">
+                  <nz-input-group nzPrefixIcon="idcard">
+                    <input
+                      type="text"
+                      nz-input
+                      formControlName="firstname"
+                      placeholder="firstname"
+                    />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your LastName!">
+                  <nz-input-group nzPrefixIcon="idcard">
+                    <input
+                      type="text"
+                      nz-input
+                      formControlName="lastname"
+                      placeholder="lastname"
+                    />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your Mobile!">
+                  <nz-input-group nzPrefixIcon="mobile">
+                    <input
+                      type="tel"
+                      nz-input
+                      formControlName="mobile"
+                      placeholder="mobile"
+                    />
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your Password!">
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    nzPrefixIcon="lock"
+                  >
+                    <input
+                      [type]="passwordVisible ? 'text' : 'password'"
+                      nz-input
+                      placeholder="password"
+                      formControlName="password"
+                    />
+                  </nz-input-group>
+                  <ng-template #suffixTemplate>
+                    <span
+                      nz-icon
+                      [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                      (click)="passwordVisible = !passwordVisible"
+                    ></span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+              <div nz-row class="login-form-margin">
+                <div nz-col [nzSpan]="12">
+                  <label nz-checkbox formControlName="remember">
+                    <span>Remember me</span>
+                  </label>
+                </div>
+                <div nz-col [nzSpan]="12">
+                  <a class="login-form-forgot">Forgot password</a>
+                </div>
+              </div>
+              <button
+                nz-button
+                class="login-form-button login-form-margin"
+                [nzType]="'primary'"
+              >
+                Log in
+              </button>
+              Or
+              <a>register now!</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section: Design Block -->
