@@ -25,6 +25,7 @@ import { VCFtoEXELComponent } from './pages/vcfto-exel/vcfto-exel.component';
 import { SearchComponent } from './pages/search/search.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthServiceService } from './auth/auth.service.service';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ registerLocaleData(fr);
   ],
   providers: [
     { provide: NZ_I18N, useValue: fr_FR },
-  ],
+  AuthServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
