@@ -46,3 +46,9 @@ nz-footer {
   right: 0;
   padding-right: 25px;
 }
+.avatar a {
+  text-decoration: none;
+  text-align: center;
+  color: #001529;
+  align-self: center;
+}

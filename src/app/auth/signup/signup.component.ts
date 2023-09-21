@@ -7,6 +7,7 @@ import {
 import { Isignup } from '../models/Signup.model';
 import { SharedObject } from 'src/app/shared/sharedObject';
 import { AuthServiceService } from '../auth.service.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +22,8 @@ export class SignupComponent {
 
   constructor(
     private fb: UntypedFormBuilder,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    router:Router
   ) {}
 
   submitForm(): void {
@@ -43,6 +45,7 @@ export class SignupComponent {
         this.validateForm.controls['email'].setValue(res.email);
         this.validateForm.controls['mobile'].setValue(res.mobile);
         this.validateForm.controls['password'].setValue(res.password);
+        this.validateForm.reset()
       },
       error: (err) => {
         alert(err?.error.massage);

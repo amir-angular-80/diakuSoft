@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from './auth/auth.service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,9 @@ import { Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   isCollapsed: boolean = false;
-  constructor() {}
+  constructor(private authService: AuthServiceService) {}
+  loginUserShow = this.authService.loginUser;
   ngOnInit(): void {
-    }
+    this.authService.userInvalid;
   }
+}

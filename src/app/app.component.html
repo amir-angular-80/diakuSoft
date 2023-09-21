@@ -1,5 +1,6 @@
-<nz-layout>
-  <nz-sider nzCollapsible nzWidth="200px">
+<router-outlet></router-outlet>
+<nz-layout *ngif="loginUserShow">
+  <nz-sider nzCollapsible nzWidth="200px" >
     <div class="logo"></div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item [routerLink]="['']">
@@ -52,7 +53,6 @@
       </div>
     </nz-header>
     <nz-content>
-      <router-outlet></router-outlet>
     </nz-content>
     <nz-footer> ©2023 Implement By Diakusoft Group</nz-footer>
   </nz-layout>

@@ -8,6 +8,7 @@ import {
 import { Ilogin } from '../models/Login.model';
 import { SharedObject } from 'src/app/shared/sharedObject';
 import { AuthServiceService } from '../auth.service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,18 @@ import { AuthServiceService } from '../auth.service.service';
 })
 export class LoginComponent {
   loginModel!: Ilogin;
-  loginFormGroup!:FormGroup;
+  loginFormGroup!: FormGroup;
   validateForm!: UntypedFormGroup;
 
   submitForm(): void {
+    this.authService.login(this.validateForm.value).subscribe({
+      next: (res) => {
+        alert(res.massage);
+      },
+      error: (err) => {
+        alert(err?.error.massage);
+      },
+    });
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
     } else {
@@ -30,30 +39,34 @@ export class LoginComponent {
         }
       });
     }
-    this.authService.login(this.loginFormGroup.value).subscribe({
-      next:(res)=>{
-        alert(res.massage)
-      },
-      error:(err)=>{
-        alert(err?.error.massage)
-      }
-    })
-    this.loginModel.userName = this.validateForm.controls['userName'].value;
-    this.loginModel.password = this.loginFormGroup.controls['password'].value;
   }
 
-  constructor(private fb: UntypedFormBuilder , private authService : AuthServiceService) {}
+  constructor(
+    private fb: UntypedFormBuilder,
+    private authService: AuthServiceService,
+    router:Router
+  ) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.compose([
-        Validators.required,
-        Validators.pattern(SharedObject.EnglishPattern)
-      ])]],
-      password: [null, [Validators.compose([
-        Validators.required,
-        Validators.pattern(SharedObject.PasswordPattern)
-      ])]],
+      userName: [
+        null,
+        [
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(SharedObject.EnglishPattern),
+          ]),
+        ],
+      ],
+      password: [
+        null,
+        [
+          Validators.compose([
+            Validators.required,
+            Validators.pattern(SharedObject.PasswordPattern),
+          ]),
+        ],
+      ],
       remember: [true],
     });
   }
