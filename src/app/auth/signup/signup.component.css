@@ -12,6 +12,7 @@
         hsl(218, 41%, 20%) 75%,
         hsl(218, 41%, 19%) 80%,
         transparent 100%);
+        min-height: 100% !important;
   }
 
   #radius-shape-1 {

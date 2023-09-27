@@ -13,17 +13,17 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient) {}
 
-  signUp(userObj: Isignup) {
+  signUp(userObj:any) {
     return this.http.post<any>(`${this.baseUrl}register`, userObj);
   }
 
   login(loginObj: Ilogin) {
-    return this.http.post<any>(`${this.baseUrl}login`, loginObj );
+    return this.http.post<any>(`${this.baseUrl}login`, loginObj);
+    this.loginUser == !this.loginUser
   }
   userInvalid(){
     if(this.userLogin !== null){
       this.loginUser == !this.loginUser
     }
   }
-
 }

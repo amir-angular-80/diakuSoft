@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   UntypedFormBuilder,
   UntypedFormGroup,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { Isignup } from '../models/Signup.model';
 import { SharedObject } from 'src/app/shared/sharedObject';
 import { AuthServiceService } from '../auth.service.service';
 import { Route, Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -23,12 +26,16 @@ export class SignupComponent {
   constructor(
     private fb: UntypedFormBuilder,
     private authService: AuthServiceService,
-    router:Router
+    private router:Router
   ) {}
 
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
+      this.authService.signUp(this.validateForm.value).subscribe(res=>{
+        alert(res.massage);
+        this.router.navigate([LoginComponent]);
+      })
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
@@ -37,29 +44,10 @@ export class SignupComponent {
         }
       });
     }
-    this.authService.signUp(this.validateForm.value).subscribe({
-      next: (res : Isignup) => {
-        this.validateForm.controls['userName'].setValue(res.username);
-        this.validateForm.controls['firstname'].setValue(res.firstName);
-        this.validateForm.controls['lastname'].setValue(res.lastName);
-        this.validateForm.controls['email'].setValue(res.email);
-        this.validateForm.controls['mobile'].setValue(res.mobile);
-        this.validateForm.controls['password'].setValue(res.password);
-        this.validateForm.reset()
-      },
-      error: (err) => {
-        alert(err?.error.massage);
-      },
-    });
-    this.signupModel.username = this.validateForm.controls['userName'].value;
-    this.signupModel.firstName = this.validateForm.controls['firstname'].value;
-    this.signupModel.lastName = this.validateForm.controls['lastname'].value;
-    this.signupModel.email = this.validateForm.controls['email'].value;
-    this.signupModel.mobile = this.validateForm.controls['mobile'].value;
-    this.signupModel.password = this.validateForm.controls['password'].value;
   }
 
   ngOnInit(): void {
+
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.compose([
@@ -84,8 +72,13 @@ export class SignupComponent {
           Validators.pattern(SharedObject.MobilePattern),
         ]),
       ],
-
+      repassword:['',Validators.required],
       remember: [true],
     });
+
+    if(this.signupModel.password !== this.signupModel.confirmPassword){
+      alert('erorr')
+    }
   }
 }
+

@@ -1,6 +1,9 @@
 <!-- Section: Design Block -->
 <router-outlet></router-outlet>
-<section class="background-radial-gradient overflow-hidden" style="height: 100%;">
+<section
+  class="background-radial-gradient overflow-hidden"
+  style="height:auto"
+>
   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
     <div class="row gx-lg-5 align-items-center mb-5">
       <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
@@ -112,17 +115,39 @@
                   </ng-template>
                 </nz-form-control>
               </nz-form-item>
+
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your Password!">
+                  <nz-input-group
+                    [nzSuffix]="suffixTemplate"
+                    nzPrefixIcon="lock"
+                  >
+                    <input
+                      [type]="passwordVisible ? 'text' : 'password'"
+                      nz-input
+                      placeholder="Re-password"
+                      formControlName="repassword"
+                    />
+                  </nz-input-group>
+                  <ng-template #suffixTemplate>
+                    <span
+                      nz-icon
+                      [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                      (click)="passwordVisible = !passwordVisible"
+                    ></span>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+
               <div nz-row class="login-form-margin">
                 <div nz-col [nzSpan]="12">
                   <label nz-checkbox formControlName="remember">
                     <span>Remember me</span>
                   </label>
                 </div>
-                <div nz-col [nzSpan]="12">
-                  <a class="login-form-forgot">Forgot password</a>
-                </div>
               </div>
               <button
+                [disabled]="!validateForm.valid"
                 nz-button
                 class="login-form-button login-form-margin"
                 [nzType]="'primary'"
@@ -130,7 +155,7 @@
                 Log in
               </button>
               Or
-              <a routerLink='/login'>register now!</a>
+              <a routerLink="/login"> Login now!</a>
             </form>
           </div>
         </div>
